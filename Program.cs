@@ -24,6 +24,9 @@ internal class Program
 
         //using var liteDBStorage = new LiteDBStorage();
         //Test(liteDBStorage);
+
+        //using var yesSqlDBStorage = new YesSqlDBStorage();
+        //Test(yesSqlDBStorage);
     }
 
     private static void Test(IBenchmarkStorage storage)

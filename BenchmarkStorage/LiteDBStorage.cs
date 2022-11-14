@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata;
 
+//https://www.litedb.org/
 namespace BenchmarkOnDatabases;
 
 public class LiteDBStorage : IBenchmarkStorage, IDisposable
@@ -21,9 +22,9 @@ public class LiteDBStorage : IBenchmarkStorage, IDisposable
         var directory = @"Z:\BenchmarkOnDatabases";
         DatabasePath = System.IO.Path.Join(directory, "LiteDB-Benchmark.db");
         _connectionString = $"Filename={DatabasePath};connection=shared;";
-        //Create
-        using var _liteDatabase = new LiteDatabase(_connectionString);
-        _liteDatabase.GetCollection<Person>().FindAll();
+
+        //Warm up :)
+        (this as IBenchmarkStorage).GetAll();
     }
 
     string IBenchmarkStorage.Information => $"LiteDB Database ['{DatabasePath}']";
